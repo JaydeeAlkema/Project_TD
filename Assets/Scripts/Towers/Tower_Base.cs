@@ -4,6 +4,8 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
+public enum RotationPivotVector { UP, RIGHT };
+
 public abstract class BaseTower : MonoBehaviour
 {
     [BoxGroup("Prefabs")] public GameObject projectilePrefab = default;
@@ -12,6 +14,7 @@ public abstract class BaseTower : MonoBehaviour
     [BoxGroup("References")] public Transform headPivot = default;
     [BoxGroup("References")] public Transform Barrel = default;
     [Space]
+    [BoxGroup("Settings")] public RotationPivotVector RotationPivotVector = RotationPivotVector.UP;
     [BoxGroup("Settings")] public LayerMask detectionLayer = default;
     [BoxGroup("Settings")] public float detectionRange = 5f;
     [BoxGroup("Settings")] public float attackSpeed = 1f;
@@ -27,7 +30,19 @@ public abstract class BaseTower : MonoBehaviour
     {
         if (target == null) return;
 
-        headPivot.right = target.transform.position - transform.position;
+        switch (RotationPivotVector)
+        {
+            case RotationPivotVector.UP:
+                headPivot.up = target.transform.position - transform.position;
+                break;
+
+            case RotationPivotVector.RIGHT:
+                headPivot.right = target.transform.position - transform.position;
+                break;
+
+            default:
+                break;
+        }
     }
 
     /// <summary>

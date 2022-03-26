@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Tilemap
+    uniqueID: 229291799
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Dynamic Sprites
+    uniqueID: 3941238263
     locked: 0
