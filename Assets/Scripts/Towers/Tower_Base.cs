@@ -4,7 +4,6 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-public enum RotationPivotVector { UP, RIGHT };
 
 public abstract class BaseTower : MonoBehaviour
 {

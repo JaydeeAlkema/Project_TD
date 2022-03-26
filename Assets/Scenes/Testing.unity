@@ -14725,7 +14725,7 @@ MonoBehaviour:
   - {fileID: 2060109727}
   - {fileID: 990774223}
   - {fileID: 794893374}
-  drawWaypoints: 0
+  drawWaypoints: 1
 --- !u!1 &1275882714
 GameObject:
   m_ObjectHideFlags: 0
@@ -14735,6 +14735,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1275882715}
+  - component: {fileID: 1275882716}
   m_Layer: 0
   m_Name: Waves Manager
   m_TagString: Untagged
@@ -14757,6 +14758,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1275882716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275882714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a087e229ee7494a84bc9a6b213b5dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesInScene: []
+  waves:
+  - {fileID: 11400000, guid: 20fe92f3a94061b4baa77cc450abeef9, type: 2}
+  - {fileID: 11400000, guid: 088ec5a81827c4343ba0ee2b38104947, type: 2}
+  - {fileID: 11400000, guid: 05ce012033148274d854b81112a5888f, type: 2}
+  - {fileID: 11400000, guid: a21960213f50ae640b511c58ef354b6c, type: 2}
+  enemiesParentTransform: {fileID: 1955115469}
+  spawnPoint: {fileID: 24016}
+  currentWaveIndex: 0
 --- !u!1 &1586242686
 GameObject:
   m_ObjectHideFlags: 0

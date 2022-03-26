@@ -9,6 +9,7 @@ public class Enemy_Base : MonoBehaviour, IDamageable
     [BoxGroup("References")] public List<Transform> waypoints = new List<Transform>();
     [BoxGroup("References")] public Transform target = default;
     [Space]
+    [BoxGroup("Settings")] public RotationPivotVector RotationPivotVector = RotationPivotVector.UP;
     [BoxGroup("Settings")] public int health = 10;
     [BoxGroup("Settings")] public float moveSpeed = 1f;
 
@@ -57,7 +58,19 @@ public class Enemy_Base : MonoBehaviour, IDamageable
         else
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-            transform.right = target.transform.position - transform.position;
+            switch (RotationPivotVector)
+            {
+                case RotationPivotVector.UP:
+                    transform.up = target.transform.position - transform.position;
+                    break;
+
+                case RotationPivotVector.RIGHT:
+                    transform.right = target.transform.position - transform.position;
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }

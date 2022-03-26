@@ -1,7 +1,6 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-public enum CollisionType { FireAndForget, SpecificTarget }
 
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Projectile_Base : MonoBehaviour
@@ -12,6 +11,7 @@ public abstract class Projectile_Base : MonoBehaviour
     [BoxGroup("References")] public GameObject target = default;
     [BoxGroup("References")] public Rigidbody2D rb2d = default;
     [Space]
+    [BoxGroup("Settings")] public RotationPivotVector RotationPivotVector = RotationPivotVector.UP;
     [BoxGroup("Settings")] public CollisionType collisionType = CollisionType.SpecificTarget;
     [BoxGroup("Settings")] public int damageOnHit = 1;
     [BoxGroup("Settings")] public float moveSpeed = 20f;
@@ -32,7 +32,19 @@ public abstract class Projectile_Base : MonoBehaviour
         if (target == null) return;
 
         transform.position = Vector2.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
-        transform.up = target.transform.position - transform.position;
+        switch (RotationPivotVector)
+        {
+            case RotationPivotVector.UP:
+                transform.up = target.transform.position - transform.position;
+                break;
+
+            case RotationPivotVector.RIGHT:
+                transform.right = target.transform.position - transform.position;
+                break;
+
+            default:
+                break;
+        }
     }
 
     /// <summary>
