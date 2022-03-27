@@ -20,18 +20,16 @@ public class WavesManager : MonoBehaviour
 
     public IEnumerator StartNextWaveCoroutine()
     {
-        if (currentWaveIndex >= waves.Count) yield return null;
-
-        ScriptableEnemyWave currentWave = waves[currentWaveIndex];
-
         if (currentWaveIndex >= waves.Count)
         {
             // End the game, the player has won!
             Debug.Log("YOU WON!");
+
             yield return null;
         }
         else
         {
+            ScriptableEnemyWave currentWave = waves[currentWaveIndex];
             int enemyIndex = currentWave.enemyIndex;
             GameObject enemyPrefab = currentWave.enemyPrefab;
             currentWaveIndex = Mathf.Clamp(currentWaveIndex += 1, 0, waves.Count);
@@ -41,6 +39,7 @@ public class WavesManager : MonoBehaviour
                 GameObject newEnemyGO = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity, enemiesParentTransform);
                 enemiesInScene.Add(newEnemyGO);
                 enemyIndex++;
+
                 yield return new WaitForSeconds(currentWave.timeToSpawn);
             }
         }
